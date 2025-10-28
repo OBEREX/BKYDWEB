@@ -14,7 +14,6 @@ import imgRectangle2 from "figma:asset/b20258fa30547b825decc6e7cca13dc27e17bfba.
 import img1 from "figma:asset/0be3546621a0c82f467a1065092444bbcf328c11.png";
 import imgInvertedComma1 from "figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87b09.png";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { link } from "fs";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
