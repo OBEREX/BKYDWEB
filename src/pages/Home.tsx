@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "motion/react";
-import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 import svgPaths from "../imports/svg-nty77d3k0k";
-import img from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
 import imgRectangle1 from "figma:asset/127beeb9b5071e3939c158f9bf65908c054cbadc.png";
 import imgRectangle4 from "figma:asset/ecdf2ef4526036646ca20c1a56e7d8cb806f4378.png";
@@ -16,7 +16,6 @@ import imgInvertedComma1 from "figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const { scrollYProgress } = useScroll();
@@ -143,115 +142,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navbar */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="relative h-12 w-16 md:h-16 md:w-20 cursor-pointer"
-              onClick={() => scrollToSection("home")}
-            >
-              <img alt="Logo" className="h-full w-full object-contain" src={img} />
-            </motion.div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-8">
-              {[
-                { id: "home", label: "Home" },
-                { id: "about", label: "About Us", link: "/about" },
-                { id: "services", label: "Services" },
-                { id: "projects", label: "Projects" },
-              ].map((item) => (
-                item.link ? (
-                  <Link key={item.id} to={item.link}>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-                    >
-                      {item.label}
-                    </motion.button>
-                  </Link>
-                ) : (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                      activeSection === item.id
-                        ? "text-blue-600"
-                        : "text-gray-600 hover:text-blue-600"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                )
-              ))}
-            </div>
-
-            {/* Contact Button */}
-            <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-colors"
-              >
-                <span>Contact Us</span>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 13 10">
-                  <path d={svgPaths.p106ce100} fill="white" />
-                  <path clipRule="evenodd" d={svgPaths.p2b15e400} fill="white" fillRule="evenodd" />
-                </svg>
-              </motion.button>
-            </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-600 hover:text-blue-600"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100"
-          >
-            <div className="px-4 py-4 space-y-2">
-              {[
-                { id: "home", label: "Home" },
-                { id: "about", label: "About Us", link: "/about" },
-                { id: "services", label: "Services" },
-                { id: "projects", label: "Projects" },
-                { id: "contact", label: "Contact" },
-              ].map((item) => (
-                item.link ? (
-                  <Link key={item.id} to={item.link} className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    {item.label}
-                  </button>
-                )
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </motion.nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20">
@@ -1010,74 +901,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="h-12 w-16">
-                <img alt="Logo" className="h-full w-full object-contain brightness-0 invert" src={img} />
-              </div>
-              <p className="text-gray-400 text-sm">
-                Empowering businesses with innovative digital solutions and cutting-edge technology.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                {["Home", "About Us", "Services", "Projects"].map((link) => (
-                  <li key={link}>
-                    {link === "About Us" ? (
-                      <Link to="/about" className="text-gray-400 hover:text-white transition-colors">
-                        {link}
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => scrollToSection(link.toLowerCase().replace(" ", ""))}
-                        className="text-gray-400 hover:text-white transition-colors"
-                      >
-                        {link}
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h4 className="mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>Digital Solutions</li>
-                <li>Technology Outsourcing</li>
-                <li>Consulting</li>
-                <li>Custom Development</li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>info@digitalagency.com</li>
-                <li>+1 (555) 123-4567</li>
-                <li>123 Business Street</li>
-                <li>Tech City, TC 12345</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-400">© 2025 Digital Agency. All rights reserved.</p>
-            <div className="flex gap-6 text-sm text-gray-400">
-              <button className="hover:text-white transition-colors">Privacy Policy</button>
-              <button className="hover:text-white transition-colors">Terms of Service</button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Scroll to Top Button */}
       <motion.button
