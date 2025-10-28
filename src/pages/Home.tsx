@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "motion/react";
 import { useNavigate, Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import svgPaths from "../imports/svg-nty77d3k0k";
 import img from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
