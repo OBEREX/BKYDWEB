@@ -15,32 +15,32 @@ export default function Contact() {
 
   const faqs = [
     {
-      question: "What is Team Newsify?",
-      answer: "Team Newsify is a comprehensive platform designed to streamline communication and collaboration within organizations.",
+      question: "What services does Backyard provide?",
+      answer: "Backyard provides comprehensive digital solutions including custom software development, mobile applications, web development, technology outsourcing, and strategic consulting services.",
     },
     {
-      question: "How is the team Newsify",
-      answer: "The team is highly skilled and dedicated to delivering exceptional results for our clients.",
+      question: "How experienced is the Backyard team?",
+      answer: "Our team is highly skilled with years of experience in delivering exceptional digital solutions and results for our clients across various industries.",
     },
     {
-      question: "What does the technology work?",
-      answer: "Our technology leverages cutting-edge solutions to provide seamless integration and optimal performance.",
+      question: "How does your technology work?",
+      answer: "Our technology leverages cutting-edge solutions and modern frameworks to provide seamless integration, optimal performance, and scalable results for your business.",
     },
     {
-      question: "How often will i get team Newsify?",
-      answer: "You'll receive regular updates and notifications based on your customized preferences.",
+      question: "What is your typical project timeline?",
+      answer: "Project timelines vary based on scope and complexity. A standard web application takes 8-12 weeks, while enterprise solutions may take 3-6 months. We provide detailed timelines during consultation.",
     },
     {
-      question: "How automated is this?",
-      answer: "It is almost completely automated as a system. You can schedule plan and create calendars for your upcoming tasks. You can use Analyzer AI, tracker, AI reporter, AI to create a smooth business plan for you and your teammates with one click!",
+      question: "Do you provide post-launch support?",
+      answer: "Yes! We offer comprehensive post-launch support including maintenance, updates, bug fixes, and feature enhancements to ensure your solution continues to meet your evolving business needs.",
     },
     {
-      question: "It is close to news letter regular?",
-      answer: "While similar in some aspects, our platform offers much more than traditional newsletters.",
+      question: "What industries do you work with?",
+      answer: "We work across various industries including healthcare, finance, e-commerce, education, logistics, and more. Our adaptable approach allows us to deliver tailored solutions for any sector.",
     },
     {
-      question: "Can i get a live demo of Newsify in action?",
-      answer: "Yes! Contact our team to schedule a personalized demo at your convenience.",
+      question: "Can I get a live demo of your solutions?",
+      answer: "Yes! Contact our team to schedule a personalized demo at your convenience. We'll walk you through our process and showcase relevant case studies.",
     },
   ];
 
@@ -469,8 +469,7 @@ export default function Contact() {
                 <img alt="Logo" className="h-full w-full object-contain brightness-0 invert" src={img} />
               </div>
               <p className="text-gray-400 text-sm">
-                Effortlessly manage and organize chats, tasks, and files in one central location with Qoterra chat
-                management solutions
+                Transform your digital presence with Backyard's innovative software development, consulting, and technology outsourcing solutions.
               </p>
               {/* Social Links */}
               <div className="flex gap-4">

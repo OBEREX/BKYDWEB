@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import imgBackyardLogo from "../assets/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 
 interface FooterProps {
@@ -14,8 +15,8 @@ export function Footer({ onNavigate }: FooterProps) {
       { name: 'Feature', page: 'feature' },
       { name: 'Pricing', page: 'pricing' },
     ],
-    support: ['FAQ`s', 'Contact Us', 'Support Center', 'Security'],
-    resources: ['Community', 'Contact', 'Tems of service'],
+    support: ['FAQs', 'Contact Us', 'Support Center', 'Security'],
+    resources: ['Community', 'Contact', 'Terms of service'],
   };
 
   return (
@@ -26,18 +27,27 @@ export function Footer({ onNavigate }: FooterProps) {
           <div>
             <img src={imgBackyardLogo} alt="Backyard Logo" className="h-20 w-auto mb-6" />
             <p className="text-white/80 mb-6">
-              Efforlessly manage and organize chats, tasks, and files in one centeral location with Qoterra chat management solutions
+              Transform your digital presence with Backyard's innovative software development, consulting, and technology outsourcing solutions.
             </p>
             <div className="flex gap-3">
-              {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
-                <motion.button
-                  key={social}
+              {[
+                { name: 'Facebook', icon: Facebook, url: 'https://facebook.com' },
+                { name: 'Twitter', icon: Twitter, url: 'https://twitter.com' },
+                { name: 'Instagram', icon: Instagram, url: 'https://instagram.com' },
+                { name: 'Linkedin', icon: Linkedin, url: 'https://linkedin.com' }
+              ].map(({ name, icon: Icon, url }) => (
+                <motion.a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit our ${name} page`}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                   className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <div className="w-4 h-4 bg-white/50 rounded-full" />
-                </motion.button>
+                  <Icon size={16} className="text-white" />
+                </motion.a>
               ))}
             </div>
           </div>

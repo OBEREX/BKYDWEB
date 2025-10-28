@@ -59,9 +59,10 @@ export function Navbar({ mobileMenuOpen, setMobileMenuOpen, onNavigate, currentP
 
           {/* CTA Button */}
           <motion.button
+            onClick={() => onNavigate('contact')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden lg:flex items-center gap-3 bg-blue-600 text-white px-6 py-2.5 rounded-md hover:bg-blue-700 transition-colors"
+            className="hidden lg:flex items-center gap-3 bg-blue-600 text-white px-6 py-2.5 rounded-md hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:outline-none"
           >
             Contact Us
             <ChevronRight className="w-5 h-5" />
@@ -95,7 +96,10 @@ export function Navbar({ mobileMenuOpen, setMobileMenuOpen, onNavigate, currentP
                 {item.name}
               </button>
             ))}
-            <button className="mt-4 w-full flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-md">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="mt-4 w-full flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
+            >
               Contact Us
               <ChevronRight className="w-5 h-5" />
             </button>
