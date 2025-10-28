@@ -1,28 +1,19 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
-import { ExternalLink, Globe, Menu, X } from 'lucide-react';
-import imgBackyardLogo from "./imports/figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
-import imgHeroBg from "./imports/figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
-import imgTestimonialAvatar from "./imports/figma:asset/0be3546621a0c82f467a1065092444bbcf328c11.png";
-import imgInvertedComma from "./imports/figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87b09.png";
+import { ExternalLink, Globe } from 'lucide-react';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import imgHeroBg from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
+import imgTestimonialAvatar from "figma:asset/0be3546621a0c82f467a1065092444bbcf328c11.png";
+import imgInvertedComma from "figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87b09.png";
 
-interface ProjectsProps {
-  onNavigate: (page: string) => void;
-}
-
-export default function Projects({ onNavigate }: ProjectsProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
-      {/* Navbar */}
-      <Navbar 
-        mobileMenuOpen={mobileMenuOpen} 
-        setMobileMenuOpen={setMobileMenuOpen}
-        onNavigate={onNavigate}
-      />
+      <Navbar />
       
       {/* Hero Section */}
       <HeroSection />
@@ -39,111 +30,8 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       {/* Scrolling Banner */}
       <ScrollingBanner />
       
-      {/* Footer */}
-      <Footer onNavigate={onNavigate} />
+      <Footer />
     </div>
-  );
-}
-
-// Navbar Component
-function Navbar({ mobileMenuOpen, setMobileMenuOpen, onNavigate }: { 
-  mobileMenuOpen: boolean; 
-  setMobileMenuOpen: (open: boolean) => void;
-  onNavigate: (page: string) => void;
-}) {
-  const navItems = [
-    { name: 'Home', page: 'home' },
-    { name: 'About Us', page: 'about' },
-    { name: 'Services', page: 'services' },
-    { name: 'Projects', page: 'projects' },
-  ];
-
-  return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm"
-    >
-      <div className="container mx-auto px-4 lg:px-24">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex-shrink-0 cursor-pointer"
-            onClick={() => onNavigate('home')}
-          >
-            <img src={imgBackyardLogo} alt="Backyard Logo" className="h-16 w-auto" />
-          </motion.div>
-
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onClick={() => onNavigate(item.page)}
-                className={`px-4 py-2 rounded-xl transition-all ${
-                  item.page === 'projects'
-                    ? 'text-blue-600' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.name}
-              </motion.button>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden lg:flex items-center gap-3 bg-blue-600 text-white px-6 py-2.5 rounded-md hover:bg-blue-700 transition-colors"
-          >
-            Contact Us
-            <ExternalLink className="w-5 h-5" />
-          </motion.button>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-gray-900"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden pb-4"
-          >
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => onNavigate(item.page)}
-                className={`block w-full text-left px-4 py-3 ${
-                  item.page === 'projects' ? 'text-blue-600' : 'text-gray-600'
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-            <button className="mt-4 w-full flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-md">
-              Contact Us
-              <ExternalLink className="w-5 h-5" />
-            </button>
-          </motion.div>
-        )}
-      </div>
-    </motion.nav>
   );
 }
 
@@ -462,98 +350,3 @@ function Testimonials({ activeTestimonial, setActiveTestimonial }: {
   );
 }
 
-// Footer
-function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
-  const footerLinks = {
-    navigate: [
-      { name: 'Home', page: 'home' },
-      { name: 'About', page: 'about' },
-      { name: 'Product', page: 'product' },
-      { name: 'Feature', page: 'feature' },
-      { name: 'Pricing', page: 'pricing' },
-    ],
-    support: ['FAQ`s', 'Contact Us', 'Support Center', 'Security'],
-    resources: ['Community', 'Contact', 'Tems of service'],
-  };
-
-  return (
-    <footer className="bg-[#020e37] text-white py-16 lg:py-24">
-      <div className="container mx-auto px-4 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div>
-            <img src={imgBackyardLogo} alt="Backyard Logo" className="h-20 w-auto mb-6" />
-            <p className="text-white/80 mb-6">
-              Efforlessly manage and organize chats, tasks, and files in one centeral location with Qoterra chat management solutions
-            </p>
-            <div className="flex gap-3">
-              {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
-                <motion.button
-                  key={social}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
-                >
-                  <div className="w-4 h-4 bg-white/50 rounded-full" />
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Navigate */}
-          <div>
-            <h4 className="mb-6">Navigate</h4>
-            <ul className="space-y-3">
-              {footerLinks.navigate.map((link) => (
-                <li key={link.name}>
-                  <button 
-                    onClick={() => onNavigate(link.page)}
-                    className="text-white/70 hover:text-white transition-colors text-left"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h4 className="mb-6">Support Us</h4>
-            <ul className="space-y-3">
-              {footerLinks.support.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h4 className="mb-6">Resources</h4>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 hover:text-white transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom */}
-        <div className="border-t border-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70">
-            <p>Terms & Conditions, Privacy Policy, Cookies Policy, Sitemap</p>
-            <p>© 2025 Backyard Technologies, All right reserved</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}

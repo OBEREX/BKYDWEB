@@ -1,0 +1,98 @@
+import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
+import imgBackyardLogo from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
+
+export default function Footer() {
+  const footerLinks = {
+    navigate: [
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+      { name: 'Services', path: '/services' },
+      { name: 'Projects', path: '/projects' },
+      { name: 'Contact', path: '/contact' },
+    ],
+    support: ['FAQ`s', 'Contact Us', 'Support Center', 'Security'],
+    resources: ['Community', 'Contact', 'Terms of service'],
+  };
+
+  return (
+    <footer className="bg-[#020e37] text-white py-16 lg:py-24">
+      <div className="container mx-auto px-4 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div>
+            <img src={imgBackyardLogo} alt="Backyard Logo" className="h-20 w-auto mb-6" />
+            <p className="text-white/80 mb-6">
+              Effortlessly manage and organize chats, tasks, and files in one central location with Qoterra chat management solutions
+            </p>
+            <div className="flex gap-3">
+              {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
+                <motion.button
+                  key={social}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                >
+                  <div className="w-4 h-4 bg-white/50 rounded-full" />
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigate */}
+          <div>
+            <h4 className="mb-6">Navigate</h4>
+            <ul className="space-y-3">
+              {footerLinks.navigate.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-white/70 hover:text-white transition-colors text-left"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="mb-6">Support Us</h4>
+            <ul className="space-y-3">
+              {footerLinks.support.map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="mb-6">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-white/70 hover:text-white transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="border-t border-white/20 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70">
+            <p>Terms & Conditions, Privacy Policy, Cookies Policy, Sitemap</p>
+            <p>© 2025 Backyard Technologies, All right reserved</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
