@@ -1,7 +1,6 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "motion/react";
+import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -43,7 +42,6 @@ export default function Home() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    setMobileMenuOpen(false);
   };
 
   const projects = [

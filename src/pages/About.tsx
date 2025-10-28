@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { motion } from "motion/react";
 import Navbar from "../components/layout/Navbar";
@@ -15,12 +13,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 
 export default function About() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
   const testimonials = [
     {
       id: 1,
       name: "Esther Jackson",
-      message: "I cant describe how great we feel using Newsify. It completely changed our workflow and the face we waste on trying to connect each other. Top Newsify!",
+      message: "I can't describe how great we feel using our services. It completely changed our workflow and the time we waste on trying to connect with each other. Outstanding!",
     },
     {
       id: 2,
@@ -420,6 +419,7 @@ export default function About() {
             ].map((filter, idx) => (
               <motion.button
                 key={filter.id}
+                onClick={() => setSelectedFilter(filter.id)}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -427,7 +427,7 @@ export default function About() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-2 rounded-full transition-all ${
-                  idx === 0
+                  selectedFilter === filter.id
                     ? "bg-blue-600 text-white shadow-lg"
                     : "bg-white text-gray-700 border border-gray-200 hover:border-blue-600"
                 }`}
