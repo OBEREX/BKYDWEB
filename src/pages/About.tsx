@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 import svgPaths from "../imports/svg-nf5cf90h5x";
-import img from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
 import imgRectangle1 from "figma:asset/127beeb9b5071e3939c158f9bf65908c054cbadc.png";
-import imgRectangle4 from "figma:asset/ecdf2ef4526036646ca20c1a56e7d8cb806f4378.png";
 import imgRectangle3 from "figma:asset/f347921dcfe3a7a62552cd9726521a8fb8479237.png";
 import imgRectangle2 from "figma:asset/b20258fa30547b825decc6e7cca13dc27e17bfba.png";
 import img1 from "figma:asset/0be3546621a0c82f467a1065092444bbcf328c11.png";
@@ -16,16 +14,7 @@ import imgInvertedComma1 from "figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 export default function About() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setMobileMenuOpen(false);
-  };
 
   const testimonials = [
     {
@@ -73,118 +62,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navbar */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link to="/">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative h-12 w-16 md:h-16 md:w-20 cursor-pointer"
-              >
-                <img alt="Logo" className="h-full w-full object-contain" src={img} />
-              </motion.div>
-            </Link>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link to="/">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Home
-                </motion.button>
-              </Link>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 rounded-lg text-blue-600"
-              >
-                About Us
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={() => scrollToSection("services")}
-                className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                Services
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={() => scrollToSection("projects")}
-                className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                Projects
-              </motion.button>
-            </div>
-
-            {/* Contact Button */}
-            <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-colors"
-              >
-                <span>Contact Us</span>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 13 10">
-                  <path d={svgPaths.p106ce100} fill="white" />
-                  <path clipRule="evenodd" d={svgPaths.p2b15e400} fill="white" fillRule="evenodd" />
-                </svg>
-              </motion.button>
-            </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-600 hover:text-blue-600"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100"
-          >
-            <div className="px-4 py-4 space-y-2">
-              <Link to="/" className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                Home
-              </Link>
-              <button className="block w-full text-left px-4 py-3 rounded-lg text-blue-600 bg-blue-50">
-                About Us
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              >
-                Contact
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </motion.nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden pt-16 md:pt-20">
@@ -909,76 +787,7 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-[#020e37] text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="h-12 w-16">
-                <img alt="Logo" className="h-full w-full object-contain brightness-0 invert" src={img} />
-              </div>
-              <p className="text-gray-400 text-sm">
-                Effortlessly manage and organize chats, tasks, and files in one central location with Qoterra chat
-                management solutions
-              </p>
-              {/* Social Links */}
-              <div className="flex gap-4">
-                {["twitter", "linkedin", "facebook", "instagram"].map((social) => (
-                  <motion.button
-                    key={social}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                  >
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                    </svg>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigate */}
-            <div>
-              <h4 className="mb-4">Navigate</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li><button className="hover:text-white transition-colors">About</button></li>
-                <li><button className="hover:text-white transition-colors">Product</button></li>
-                <li><button className="hover:text-white transition-colors">Feature</button></li>
-                <li><button className="hover:text-white transition-colors">Pricing</button></li>
-              </ul>
-            </div>
-
-            {/* Support Us */}
-            <div>
-              <h4 className="mb-4">Support Us</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button className="hover:text-white transition-colors">FAQ's</button></li>
-                <li><button className="hover:text-white transition-colors">Contact Us</button></li>
-                <li><button className="hover:text-white transition-colors">Support Center</button></li>
-                <li><button className="hover:text-white transition-colors">Security</button></li>
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button className="hover:text-white transition-colors">Community</button></li>
-                <li><button className="hover:text-white transition-colors">Contact</button></li>
-                <li><button className="hover:text-white transition-colors">Terms of service</button></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-400">Terms & Conditions, Privacy Policy, Cookies Policy, Sitemap</p>
-            <p className="text-sm text-gray-400">© 2025 Backyard Technologies, All right reserved</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Scroll to Top Button */}
       <motion.button
