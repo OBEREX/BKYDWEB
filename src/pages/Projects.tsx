@@ -7,7 +7,11 @@ import { Footer } from '../components/Footer';
 import { ScrollingBanner } from '../components/ScrollingBanner';
 import { Testimonials } from '../components/Testimonials';
 
-export default function Projects() {
+interface ProjectsProps {
+  onNavigate: (page: string) => void;
+}
+
+export default function Projects({ onNavigate }: ProjectsProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -18,6 +22,7 @@ export default function Projects() {
       <Navbar 
         mobileMenuOpen={mobileMenuOpen} 
         setMobileMenuOpen={setMobileMenuOpen}
+        onNavigate={onNavigate}
         currentPage="projects"
       />
       
@@ -37,7 +42,7 @@ export default function Projects() {
       <ScrollingBanner />
       
       {/* Footer */}
-      <Footer />
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }
