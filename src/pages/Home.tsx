@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "motion/react";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import svgPaths from "../imports/svg-nty77d3k0k";
-import img from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
 import imgRectangle1 from "figma:asset/127beeb9b5071e3939c158f9bf65908c054cbadc.png";
 import imgRectangle4 from "figma:asset/ecdf2ef4526036646ca20c1a56e7d8cb806f4378.png";
@@ -14,12 +12,30 @@ import imgRectangle2 from "figma:asset/b20258fa30547b825decc6e7cca13dc27e17bfba.
 import img1 from "figma:asset/0be3546621a0c82f467a1065092444bbcf328c11.png";
 import imgInvertedComma1 from "figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87b09.png";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { projects as projectsData } from "../data/projects";
+import { testimonials as testimonialsData } from "../data/testimonials";
+import { faqs as faqsData } from "../data/faqs";
 
-export default function Home() {
+interface HomeProps {
+  onNavigate?: (page: string) => void;
+}
+
+export default function Home({ onNavigate }: HomeProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const { scrollYProgress } = useScroll();
+  const navigate = useNavigate();
+
+  const handleNavigate = (page: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+    } else {
+      navigate(`/${page === 'home' ? '' : page}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,99 +63,10 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
-  const projects = [
-    {
-      id: 1,
-      title: "CarAlert247",
-      description: "Comprehensive healthcare management solution for hospitals and clinics with patient records and appointment scheduling.",
-      category: "digital",
-      tags: ["TypeScript", "Express", "PostgreSQL"],
-    },
-    {
-      id: 2,
-      title: "QuikLearn",
-      description: "Interactive learning platform with course management and progress tracking for students and educators.",
-      category: "digital",
-      tags: ["React", "Node.js", "MongoDB"],
-    },
-    {
-      id: 3,
-      title: "Enterprise Portal",
-      description: "Scalable enterprise solution for managing business operations and team collaboration.",
-      category: "outsourcing",
-      tags: ["Vue.js", "Python", "Redis"],
-    },
-    {
-      id: 4,
-      title: "Analytics Dashboard",
-      description: "Real-time analytics and reporting platform for data-driven decision making.",
-      category: "consulting",
-      tags: ["React", "D3.js", "AWS"],
-    },
-    {
-      id: 5,
-      title: "Mobile Commerce",
-      description: "Full-featured mobile commerce application with seamless payment integration.",
-      category: "digital",
-      tags: ["React Native", "Firebase", "Stripe"],
-    },
-    {
-      id: 6,
-      title: "Cloud Migration",
-      description: "Complete cloud infrastructure migration and optimization for enterprise clients.",
-      category: "outsourcing",
-      tags: ["AWS", "Docker", "Kubernetes"],
-    },
-  ];
-
+  const projects = projectsData;
   const filteredProjects = selectedFilter === "all" ? projects : projects.filter((p) => p.category === selectedFilter);
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "CEO, TechStart Inc",
-      content: "Working with this team transformed our digital presence completely. Their expertise and dedication are unmatched.",
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "CTO, DataFlow Systems",
-      content: "Outstanding service and exceptional results. They delivered beyond our expectations on every front.",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "Product Manager, InnovateCo",
-      content: "A truly professional team that understands business needs and delivers innovative solutions.",
-      rating: 5,
-    },
-  ];
-
-  const faqs = [
-    {
-      question: "What services do you offer?",
-      answer: "We provide comprehensive digital solutions including custom software development, mobile applications, web development, technology outsourcing, and strategic consulting services.",
-    },
-    {
-      question: "How long does a typical project take?",
-      answer: "Project timelines vary based on scope and complexity. A standard web application takes 8-12 weeks, while enterprise solutions may take 3-6 months. We provide detailed timelines during consultation.",
-    },
-    {
-      question: "Do you provide post-launch support?",
-      answer: "Yes, we offer comprehensive post-launch support including maintenance, updates, bug fixes, and feature enhancements to ensure your solution continues to meet your evolving needs.",
-    },
-    {
-      question: "What industries do you work with?",
-      answer: "We work across various industries including healthcare, finance, e-commerce, education, logistics, and more. Our adaptable approach allows us to deliver solutions for any sector.",
-    },
-    {
-      question: "How do you ensure project quality?",
-      answer: "We follow industry best practices including code reviews, automated testing, continuous integration, and regular client communication to ensure the highest quality standards.",
-    },
-  ];
+  const testimonials = testimonialsData;
+  const faqs = faqsData;
 
   return (
     <div className="min-h-screen bg-white">
