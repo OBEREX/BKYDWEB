@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "motion/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import svgPaths from "../imports/svg-nty77d3k0k";
+import img from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
 import imgRectangle1 from "figma:asset/127beeb9b5071e3939c158f9bf65908c054cbadc.png";
 import imgRectangle4 from "figma:asset/ecdf2ef4526036646ca20c1a56e7d8cb806f4378.png";
