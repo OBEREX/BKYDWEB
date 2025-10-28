@@ -2,156 +2,41 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Menu, X } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import svgPaths from "../imports/svg-pguqfs0gr5";
-import img from "figma:asset/3c60352fc04f4c23b7ff3320566bb0abf5635e82.png";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { faqs as faqsData } from "../data/faqs";
 
-export default function Contact() {
+interface ContactProps {
+  onNavigate?: (page: string) => void;
+}
+
+export default function Contact({ onNavigate }: ContactProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const faqs = [
-    {
-      question: "What services does Backyard provide?",
-      answer: "Backyard provides comprehensive digital solutions including custom software development, mobile applications, web development, technology outsourcing, and strategic consulting services.",
-    },
-    {
-      question: "How experienced is the Backyard team?",
-      answer: "Our team is highly skilled with years of experience in delivering exceptional digital solutions and results for our clients across various industries.",
-    },
-    {
-      question: "How does your technology work?",
-      answer: "Our technology leverages cutting-edge solutions and modern frameworks to provide seamless integration, optimal performance, and scalable results for your business.",
-    },
-    {
-      question: "What is your typical project timeline?",
-      answer: "Project timelines vary based on scope and complexity. A standard web application takes 8-12 weeks, while enterprise solutions may take 3-6 months. We provide detailed timelines during consultation.",
-    },
-    {
-      question: "Do you provide post-launch support?",
-      answer: "Yes! We offer comprehensive post-launch support including maintenance, updates, bug fixes, and feature enhancements to ensure your solution continues to meet your evolving business needs.",
-    },
-    {
-      question: "What industries do you work with?",
-      answer: "We work across various industries including healthcare, finance, e-commerce, education, logistics, and more. Our adaptable approach allows us to deliver tailored solutions for any sector.",
-    },
-    {
-      question: "Can I get a live demo of your solutions?",
-      answer: "Yes! Contact our team to schedule a personalized demo at your convenience. We'll walk you through our process and showcase relevant case studies.",
-    },
-  ];
+  const handleNavigate = (page: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+    } else {
+      navigate(`/${page === 'home' ? '' : page}`);
+    }
+  };
+
+  const faqs = faqsData;
 
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link to="/">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="relative h-12 w-16 md:h-16 md:w-20 cursor-pointer"
-              >
-                <img alt="Logo" className="h-full w-full object-contain" src={img} />
-              </motion.div>
-            </Link>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link to="/">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  Home
-                </motion.button>
-              </Link>
-              <Link to="/about">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  About Us
-                </motion.button>
-              </Link>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={() => navigate('/services')}
-                className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                Services
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={() => navigate('/projects')}
-                className="px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                Projects
-              </motion.button>
-            </div>
-
-            {/* Contact Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-colors"
-            >
-              <span>Contact Us</span>
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 13 10">
-                <path d={svgPaths.p106ce100} fill="white" />
-                <path clipRule="evenodd" d={svgPaths.p2b15e400} fill="white" fillRule="evenodd" />
-              </svg>
-            </motion.button>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-600 hover:text-blue-600"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100"
-          >
-            <div className="px-4 py-4 space-y-2">
-              <Link to="/" className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                Home
-              </Link>
-              <Link to="/about" className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                About Us
-              </Link>
-              <button
-                onClick={() => { navigate('/services'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => { navigate('/projects'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              >
-                Projects
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </motion.nav>
+      <Navbar
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        onNavigate={handleNavigate}
+        currentPage="contact"
+      />
 
       {/* Hero Section */}
       <section className="relative min-h-[300px] md:min-h-[400px] flex items-center justify-center overflow-hidden pt-16 md:pt-20">
@@ -459,75 +344,10 @@ export default function Contact() {
         </motion.div>
       </div>
 
+
       {/* Footer */}
-      <footer className="bg-[#020e37] text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="h-12 w-16">
-                <img alt="Logo" className="h-full w-full object-contain brightness-0 invert" src={img} />
-              </div>
-              <p className="text-gray-400 text-sm">
-                Transform your digital presence with Backyard's innovative software development, consulting, and technology outsourcing solutions.
-              </p>
-              {/* Social Links */}
-              <div className="flex gap-4">
-                {["twitter", "linkedin", "facebook", "instagram"].map((social) => (
-                  <motion.button
-                    key={social}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                  >
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 14 14">
-                      <path d={svgPaths.p3a55dd40} fillOpacity="0.48" />
-                    </svg>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
+      <Footer onNavigate={handleNavigate} />
 
-            {/* Navigate */}
-            <div>
-              <h4 className="mb-4">Navigate</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
-                <li><button onClick={() => navigate('/services')} className="hover:text-white transition-colors">Services</button></li>
-                <li><button onClick={() => navigate('/projects')} className="hover:text-white transition-colors">Projects</button></li>
-                <li><button className="hover:text-white transition-colors">Pricing</button></li>
-              </ul>
-            </div>
-
-            {/* Support Us */}
-            <div>
-              <h4 className="mb-4">Support Us</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button className="hover:text-white transition-colors">FAQ's</button></li>
-                <li><button className="hover:text-white transition-colors">Contact Us</button></li>
-                <li><button className="hover:text-white transition-colors">Support Center</button></li>
-                <li><button className="hover:text-white transition-colors">Security</button></li>
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button className="hover:text-white transition-colors">Community</button></li>
-                <li><button className="hover:text-white transition-colors">Contact</button></li>
-                <li><button className="hover:text-white transition-colors">Terms of service</button></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-400">Terms & Conditions, Privacy Policy, Cookies Policy, Sitemap</p>
-            <p className="text-sm text-gray-400">© 2025 Backyard Technologies, All right reserved</p>
-          </div>
-        </div>
-      </footer>
 
       {/* Scroll to Top Button */}
       <motion.button
