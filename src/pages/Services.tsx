@@ -142,33 +142,6 @@ function ServicesGrid() {
             </motion.div>
           ))}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={`${service.title}-2`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
-            >
-              <div className="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center text-blue-600 mb-6">
-                {service.icon}
-              </div>
-              <h3 className="text-gray-800 mb-4">{service.title}</h3>
-              <p className="text-gray-600 mb-6">{service.description}</p>
-              <motion.button
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-gray-700 group"
-              >
-                <span className="border-b-2 border-white group-hover:border-gray-700 transition-colors">Learn More</span>
-                <ArrowRight className="w-7 h-7 text-blue-500" />
-              </motion.button>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -270,12 +243,12 @@ function Testimonials({ activeTestimonial, setActiveTestimonial }: { activeTesti
   const testimonials = [
     {
       name: 'Esther Jackson',
-      text: 'I cant describe how great we feel using Newsify. It completely changed our workflow and the face we waste on truying to connect each other.Top Newsify!"',
+      text: 'I can\'t describe how great we feel using our services. It completely changed our workflow and the time we waste on trying to connect with each other. Outstanding!',
       avatar: imgTestimonialAvatar,
     },
     {
-      name: 'Esther Jackson',
-      text: 'I cant describe how great we feel using Newsify. It completely changed our workflow and the face we waste on truying to connect each other.Top Newsify!"',
+      name: 'Michael Chen',
+      text: 'Outstanding service and exceptional results. The team delivered beyond our expectations on every front.',
       avatar: imgTestimonialAvatar,
     },
   ];
@@ -491,7 +464,7 @@ function FAQSection({ openFAQ, setOpenFAQ }: { openFAQ: number | null; setOpenFA
     { question: 'How often will i get team Newsify?', answer: '' },
     {
       question: 'How automated is this?',
-      answer: 'It is alomost completely automated as a system. You can schedule plan and create calenders for your upcoming males. You can Anylzer Ai, tracker, Ai reporter, Ai to create a smooth business plan for your and your teamateswith one click!'
+      answer: 'It is almost completely automated as a system. You can schedule, plan and create calendars for your upcoming tasks. You can use Analyzer AI, tracker, AI reporter, and AI to create a smooth business plan for you and your teammates with one click!'
     },
     { question: 'It is close to news letter regular?', answer: '' },
     { question: 'Can i get a live demo of Newsify in action?', answer: '' },
