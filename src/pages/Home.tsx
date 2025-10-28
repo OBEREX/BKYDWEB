@@ -7,15 +7,13 @@ import Footer from "../components/layout/Footer";
 import svgPaths from "../imports/svg-nty77d3k0k";
 import imgPexelsPhotoByChristinaMorillo from "figma:asset/15a3ea5e5cc29b422a71f64488406c0fb8976143.png";
 import imgRectangle1 from "figma:asset/127beeb9b5071e3939c158f9bf65908c054cbadc.png";
-import imgRectangle4 from "figma:asset/ecdf2ef4526036646ca20c1a56e7d8cb806f4378.png";
 import imgRectangle3 from "figma:asset/f347921dcfe3a7a62552cd9726521a8fb8479237.png";
 import imgRectangle2 from "figma:asset/b20258fa30547b825decc6e7cca13dc27e17bfba.png";
-import img1 from "figma:asset/0be3546621a0c82f467a1065092444bbcf328c11.png";
 import imgInvertedComma1 from "figma:asset/348d8f61d0da43ecb3eb0cb2c4444d0d03c87b09.png";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [, setActiveSection] = useState("home");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const { scrollYProgress } = useScroll();
 
